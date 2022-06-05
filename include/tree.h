@@ -9,7 +9,7 @@ class Tree {
  public:
     explicit Tree(std::vector<char> x) {
         root = new Node;
-        root->v = '/';
+        root->value = '/';
         SetNode(root, x);
         Prop(root);
     }
@@ -31,7 +31,7 @@ class Tree {
 
  private:
     struct Node {
-        char v;
+        char value;
         std::vector<Node*> current;
     };
     Node* root;
@@ -40,10 +40,10 @@ class Tree {
     if (!Numbs.size()) {
      return;
     }
-        if (root->v != '/') {
+        if (root->value != '/') {
             std::vector<char>::iterator q = Numbs.begin();
             while (q != Numbs.end()) {
-                if (*q == root->v) {
+                if (*q == root->value) {
                     Numbs.erase(q);
                     break;
                 }
@@ -56,7 +56,7 @@ class Tree {
            c++;
         }
         for (int c = 0; c < root->current.size(); ++c) {
-            root->current[c]->v = Numbs[c];
+            root->current[c]->value = Numbs[c];
         }
         for (int c = 0; c < root->current.size(); ++c) {
             SetNode(root->current[c], Numbs);
@@ -65,12 +65,12 @@ class Tree {
 
     void Prop(Node* root, std::string s = "") {
         if (!root->current.size()) {
-            s = s + root->v;
+            s = s + root->value;
             perm.push_back(s);
             return;
         }
         if (root->value != '/') {
-            s = s + root->v;
+            s = s + root->value;
         }
         int c = 0;
         while (c < root->current.size()) {
@@ -81,3 +81,4 @@ class Tree {
 };
 
 #endif  // INCLUDE_TREE_H_
+
